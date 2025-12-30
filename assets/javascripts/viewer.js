@@ -1,6 +1,7 @@
 (function () {
   // Fetch the image manifest and initialize the viewer
-  fetch('../scannedImgViewer/chuliau/images.json')
+  const baseUrl = (window.JEKYLL_CONFIG && window.JEKYLL_CONFIG.baseUrl) || '..';
+  fetch(`${baseUrl}/chuliau/images.json`)
     .then(response => response.json())
     .then(data => {
       const baseUrl = data.baseUrl;
@@ -9,7 +10,7 @@
 
       let imgSources = images.map(imageName => ({
         type: 'image',
-        url: `..${baseUrl}${dataFolderPath}/${imageName}`
+        url: `${baseUrl}${dataFolderPath}/${imageName}`
       }));
 
       const imgSourcesMin = 1;
